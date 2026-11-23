@@ -221,6 +221,7 @@ function show(){
  const dim=!e.ped&&r<60?" (diminuída)":"";
  $("txt").textContent=`Taxa de filtração glomerular estimada: ${shown} mL/min/1,73 m²${dim}\nEquação: ${e.curto}.`+(e.ped?"\nRef.: Schwartz GJ et al. J Am Soc Nephrol 2009;20:629-37.":"\nRef.: Inker LA et al. N Engl J Med 2021;385:1737-49; SBN/SBPC-ML, Braz J Nephrol 2024.");
  if(cur==="ckd12cys")$("txt").textContent=$("txt").textContent.replace("2021;385:1737-49","2012;367:20-9");
+ if(!e.ped)$("txt").textContent+="\n\nValores de referência (KDIGO 2024), em mL/min/1,73 m²:\n"+KD.map(g=>"- "+g[3]+" ("+g[0]+"): "+(g[1]===null?"menor que 15":g[2]===null?"90 ou mais":g[1]+" a "+g[2])).join("\n")+"\nTFG entre 60 e 89 sem outro marcador de lesão renal não caracteriza doença renal crônica.";
  $("warn").textContent=w.join(" ");$("cpok").textContent="";
 }
 $("tabs").addEventListener("click",ev=>{const b=ev.target.closest("button");if(!b)return;cur=b.dataset.k;try{localStorage.setItem("tfg-eq",cur)}catch(e){}if(cur==="ckid"&&num("idade")>=18)$("idade").value=8;show()});
